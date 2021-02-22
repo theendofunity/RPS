@@ -9,6 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var score: (computer: Int, you: Int) = (0, 0)
+    
+    @IBOutlet weak var scoreLabel: UILabel!
     
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var robotButton: UIButton!
@@ -69,15 +72,19 @@ class ViewController: UIViewController {
         case .win:
             statusLabel.text = "You win)"
             self.view.backgroundColor = UIColor.green
+            score.you += 1
         case .start:
             reset()
         case .lose:
             statusLabel.text = "You lose)"
             self.view.backgroundColor = UIColor.red
+            score.computer += 1
         case .draw:
             statusLabel.text = "Draw)"
             self.view.backgroundColor = UIColor.blue
         }
+        
+        scoreLabel.text = "Score \(score.computer) : \(score.you)"
     }
     
     func reset() {
